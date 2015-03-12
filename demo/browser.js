@@ -2,7 +2,7 @@
 var React = require('react');
 var Dropzone = require('../');
 
-var DropzoneDemo = React.createClass({
+var DropzoneDemo = React.createClass({displayName: "DropzoneDemo",
     getInitialState: function () {
       return {
         files: []
@@ -24,14 +24,14 @@ var DropzoneDemo = React.createClass({
       var files = this.state.files;
 
       return (
-        <div>
-          <h3>Dropped files: </h3>
-          <ul>
-            {[].map.call(files, function (f, i) {
-              return <li key={i}>{f.name + ' : ' + f.size + ' bytes.'}</li>
-            })}
-          </ul>
-        </div>
+        React.createElement("div", null, 
+          React.createElement("h3", null, "Dropped files: "), 
+          React.createElement("ul", null, 
+            [].map.call(files, function (f, i) {
+              return React.createElement("li", {key: i}, f.name + ' : ' + f.size + ' bytes.')
+            })
+          )
+        )
         );
     },
 
@@ -41,16 +41,16 @@ var DropzoneDemo = React.createClass({
       };
 
       return (
-          <div>
-            <Dropzone onDrop={this.onDrop} size={150} >
-              <div style={styling}>Try dropping some files here, or click to select files to upload.</div>
-            </Dropzone>
-            {this.showFiles()}
-          </div>
+          React.createElement("div", null, 
+            React.createElement(Dropzone, {onDrop: this.onDrop, size: 150}, 
+              React.createElement("div", {style: styling}, "Try dropping some files here, or click to select files to upload.")
+            ), 
+            this.showFiles()
+          )
       );
     }
 });
 
-React.render(<DropzoneDemo />, document.body);
+React.render(React.createElement(DropzoneDemo, null), document.body);
 
 module.exports = DropzoneDemo;

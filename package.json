@@ -3,6 +3,9 @@
   "version": "1.0.1",
   "description": "Simple HTML5 drag-drop zone in React",
   "main": "index.js",
+  "scripts": {
+    "build": "jsx --harmony -x jsx ./src ./"
+  },
   "keywords": [
     "react-component",
     "react",

@@ -1,6 +1,6 @@
 var React = require('react');
 
-var Dropzone = React.createClass({displayName: "Dropzone",
+var Dropzone = React.createClass({
   getInitialState: function() {
     return {
       isDragActive: false
@@ -70,10 +70,10 @@ var Dropzone = React.createClass({displayName: "Dropzone",
     }
 
     return (
-      React.createElement("div", {className: className, style: style, onClick: this.onClick, onDragLeave: this.onDragLeave, onDragOver: this.onDragOver, onDrop: this.onDrop}, 
-        React.createElement("input", {style: {display: 'none'}, type: "file", multiple: true, ref: "fileInput", onChange: this.onDrop}), 
-        this.props.children
-      )
+      <div className={className} style={style} onClick={this.onClick} onDragLeave={this.onDragLeave} onDragOver={this.onDragOver} onDrop={this.onDrop}>
+        <input style={{display: 'none' }} type='file' multiple ref='fileInput' onChange={this.onDrop} />
+        {this.props.children}
+      </div>
     );
   }
 
